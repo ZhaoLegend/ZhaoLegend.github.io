@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传奇 | 赛博空间</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+    <link rel="stylesheet" href="chuanqi.css">
+    <link rel="preload" as="image" href="background.png">
+    <style>
+        /* 定义自定义属性 */
+        :root {
+            --neon-cyan: rgb(53, 129, 192);
+        }
+        body {
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* 新增按钮样式 */
+        #playButton {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: none;
+            color: var(--neon-cyan);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+        }
+        /* 媒体查询 - 小屏幕设备 */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 0.8rem;
+            }
+            .project-card {
+                margin: 0.5rem;
+                padding: 0.5rem;
+            }
+            .project-card h3,
+            .project-card pre {
+                padding-left: 1rem;
+            }
+            .project-card pre {
+                margin-left: -1rem;
+            }
+            .cyber-button {
+                font-size: 0.7rem;
+                padding: 0.3em 0.8em;
+                right: 0.5rem;
+                bottom: 0.5rem;
+            }
+        }
+        /* 中等屏幕手机 */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .project-card {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            .project-card h3,
+            .project-card pre {
+                padding-left: 2rem;
+            }
+            .project-card pre {
+                margin-left: -2rem;
+            }
+            .cyber-button {
+                font-size: 0.8rem;
+                padding: 0.5em 1em;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+    <script>
+        // 图片加载错误时使用渐变背景
+        window.addEventListener('load', function() {
+            const img = new Image();
+            img.src = 'background.png';
+            img.onerror = () => {
+                document.body.style.backgroundImage = 
+                    'linear-gradient(to bottom, var(--cyber-black), #1a1a2e)';
+            };
+        });
+    </script>
+</head>
+<body>
+    <audio id="backgroundMusic" autoplay loop>
+        <!-- 使用相对路径 -->
+        <source src="鸣潮先约电台、jixwang、VISION SOUND - 悠忽舞于梦中.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+    
+    <div class="top-light"></div>
+    <div class="bottom-light"></div>
+    <div class="left-light"></div>
+    <div class="right-light"></div>
+    
+    <header class="header">
+        <h1>Zhao Legend</h1>
+        <p>初级开发者</p>
+    </header>
+
+    <main>
+        <article class="project-card">
+            <div class="data-stream"></div>
+            <h3>关于我</h3>
+            <pre><code class="language-cpp">
+                热爱编程 专注于python Selenium浏览器自动化操作 <br>
+                python requests BeautifulSoup Scrapy浏览器数据抓取(爬虫) <br>
+                在JavaScript方面 目前只会一些修改网页样式以及插入其他功能等... <br><br><br>
+            </code></pre>
+            <a href="https://zcq-githu.github.io/ZCQ-githu/1" class="cyber-button" style="right: 12rem;">查看项目1</a>
+            <a href="https://zcq-githu.github.io/ZCQ-githu/2" class="cyber-button">查看项目2</a>
+        </article>
+    </main>
+    <button id="playButton" style="display: none;">&#x1F3B5;</button>
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const playButton = document.getElementById('playButton');
+
+        audio.play().catch(() => {
+            playButton.style.display = 'block';
+            console.log('自动播放失败，请手动播放音乐。');
+        });
+
+        playButton.addEventListener('click', () => {
+            audio.play();
+            playButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

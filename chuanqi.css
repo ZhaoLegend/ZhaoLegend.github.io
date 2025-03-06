@@ -1,0 +1,324 @@
+:root {
+    --neon-cyan: #3688b8;    
+    --neon-pink: #ff00ff;    
+    --hologram-blue: #4facfe; 
+    --cyber-black: #0a0a12;   
+}
+
+body {
+    background: var(--cyber-black);
+    background-image: url('background.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-cyan);
+    line-height: 1.8;
+    overflow-x: hidden;
+    font-size: 16px; 
+}
+
+.header {
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    margin-bottom: 0rem;
+}
+.header h1,
+.header p {
+    font-size: 4.5rem;
+    background: linear-gradient(
+        90deg,
+        var(--neon-pink) 25%,
+        var(--neon-cyan) 50%,
+        #ff69b4 75%,  /* 粉色 */
+        #ff4500 100%  /* 橙色 */
+    );
+    -webkit-background-clip: text;
+    background-clip: text;          /* 标准语法 */
+    -webkit-text-fill-color: transparent;
+    color: transparent;             /* 降级支持 */
+    letter-spacing: 2px;
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite reverse, glitch 2s linear infinite; /* 添加故障动画 */
+    /* 添加霓虹效果 */
+    text-shadow: 
+        0 0 5px var(--neon-cyan),
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-cyan),
+        0 0 40px var(--neon-pink),
+        0 0 80px var(--neon-pink),
+        0 0 90px var(--neon-pink),
+        0 0 100px var(--neon-pink),
+        0 0 150px var(--neon-pink);
+}
+/* 为 p 元素单独设置字体大小 */
+.header p {
+    font-size: 1.5rem; /* 根据需要调整字体大小 */
+}
+/* 渐变动画 */
+@keyframes gradient {
+    0% { background-position: 200% center; }
+    100% { background-position: 0% center; }
+}
+/* 故障动画 */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-10px, 5px); }  /* 左上偏移 */
+    40% { transform: translate(10px, -5px); }  /* 右下偏移 */
+    60% { transform: translate(10px, 5px); }   /* 右上偏移 */
+    80% { transform: translate(-10px, -5px); } /* 左下偏移 */
+    100% { transform: translate(0); }
+}
+/* 全息投影卡片 */
+.project-card {
+    background: rgba(10, 10, 18, 0.9); /* 背景透明度可调 */
+    border: 2px solid var(--neon-cyan); /* 边框粗细可调 */
+    margin: 10rem;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s; /* 过渡动画时长可调 */
+    /* 修改为上下对称的切角形状 */
+    clip-path: polygon(
+        5% 0%,    /* 左上切角 */
+        95% 0%,   /* 右上切角 */
+        100% 20%, /* 右上角 */
+        100% 80%, /* 右下角 */
+        95% 100%, /* 右下切角 */
+        5% 100%,  /* 左下切角 */
+        0% 80%,   /* 左下角 */
+        0% 20%    /* 左上角 */
+    );
+    display: flex;
+    flex-direction: column;
+}
+
+/* 全息投影卡片的内容样式 */
+.project-card h3,
+.project-card pre {
+    /* 修改左侧内边距 */
+    padding-left: 5rem; 
+    /* 修改上内边距 */
+    padding-top: -5rem; 
+    /* 修改下内边距 */
+    padding-bottom: -5rem; 
+    position: relative; /* 确保在数据流之上 */
+    /* 修改：确保.project-card h3和pre元素在数据流之上 */
+    z-index: 2;     
+}
+/* 为代码块添加额外的左边距，使其与卡片内容对齐 */
+.project-card pre {
+    /* 修改代码块额外左边距 */
+    margin-left: -5rem; 
+    /* 修改代码块上外边距 */
+    margin-top: -1rem; 
+    /* 修改代码块下外边距 */
+    margin-bottom: -1rem; 
+}
+/* 添加文字发光效果 */
+.project-card h3 {
+    /* 设置文字的阴影，产生霓虹发光效果 */
+    text-shadow: 0 0 5px var(--neon-cyan);
+    /* 为文字添加渐变背景 */
+    background: linear-gradient(
+        90deg,
+        var(--neon-cyan) 0%,
+        var(--neon-pink) 25%,
+        var(--hologram-blue) 50%,
+        #ff69b4 75%,  /* 粉色 */
+        #ff4500 100%  /* 橙色 */
+    );
+    /* 将背景裁剪为文字的形状 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* 设置文字填充颜色为透明，让背景色显示出来 */
+    -webkit-text-fill-color: transparent;
+    /* 设置背景大小，用于动画效果 */
+    background-size: 200% auto;
+    /* 应用渐变动画，3秒一个周期，线性变化，无限循环 */
+    animation: gradient 3s linear infinite;
+    /* 修改后效果：h3标题会有霓虹发光效果，并且文字颜色会呈现渐变动画 */
+}
+/* 为项目卡片内的代码块添加样式 */
+.project-card pre code {
+    /* 设置代码块文字的阴影，产生发光效果 */
+    text-shadow: 0 0 3px var(--hologram-blue);
+    /* 为代码块文字添加渐变背景 */
+    background: linear-gradient(
+        90deg,
+        var(--neon-cyan) 0%,
+        var(--neon-pink) 25%,
+        var(--hologram-blue) 50%,
+        #9e69ff 75%,  /* 粉色 */
+        #ffe600 100%  /* 橙色 */
+    );
+    /* 将背景裁剪为文字的形状 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* 设置文字填充颜色为透明，让背景色显示出来 */
+    -webkit-text-fill-color: transparent;
+    /* 设置背景大小，用于动画效果 */
+    background-size: 200% auto;
+    /* 应用渐变动画，5秒一个周期，线性变化，无限循环 */
+    animation: gradient 5s infinite linear;
+    /* 修改后效果：代码块内的文字会有发光效果，并且文字颜色会呈现渐变动画 */
+}
+/* 卡片悬停效果 - 可调整位移和发光强度 */
+.project-card:hover {
+    /* 当鼠标悬停在卡片上时，卡片向上移动10px */
+    transform: translateY(-10px); /* 上移距离可调 */
+    /* 为卡片添加外发光和内发光效果 */
+    box-shadow: 
+        /* 外发光 - 可调整范围和强度 */
+        0 0 30px var(--neon-pink),     
+        /* 内发光 - 可调整范围和强度 */
+        inset 0 0 20px var(--hologram-blue); 
+    /* 修改后效果：鼠标悬停在卡片上时，卡片会上移并产生发光效果 */
+}
+/* 数据流效果 */
+.data-stream {
+    position: absolute;
+    width: 100%;    /* 保持宽度100% */
+    height: 100%;   /* 保持高度100% */
+    top: 0;         /* 添加：确保从顶部开始 */
+    left: 0;        /* 添加：确保从左侧开始 */
+    right: 0;       /* 添加：确保延伸到右侧 */
+    bottom: 0;      /* 添加：确保延伸到底部 */
+    background: repeating-linear-gradient(
+        40deg,
+        transparent,
+        transparent 5px,
+        rgb(245, 8, 213) 5px,
+        rgba(245, 7, 193, 0.986) 10px
+    );
+    mask: linear-gradient(90deg, transparent 0%, white 50%, transparent 100%);
+    animation: stream 4s linear infinite;
+    z-index: 0;     /* 修改：确保在文字之下 */
+}
+/* 数据流动画定义 */
+@keyframes stream {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+/* 顶部光线效果 */
+.top-light,
+.bottom-light,
+.left-light,
+.right-light {
+    position: fixed;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    box-shadow: 
+        0 0 20px var(--neon-cyan),
+        0 0 20px var(--neon-pink);
+    z-index: 999; /* 确保光线在最上层 */
+}
+.top-light {
+    top: 0;
+    width: 100%;
+    height: 10px;
+    animation: lightMove 5s linear infinite;
+}
+.bottom-light {
+    bottom: 0;
+    width: 100%; /* 修改为100%以覆盖底部 */
+    height: 10px; /* 修改为10px以和顶部光线一致 */
+    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+    animation: lightMove 5s linear infinite reverse;
+}
+.left-light {
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-pink));
+    animation: lightMoveLeft 5s linear infinite;
+}
+.right-light {
+    right: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--neon-pink), var(--neon-cyan));
+    animation: lightMoveRight 5s linear infinite;
+}
+/* 顶部的光线动画 */
+@keyframes lightMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+/* 底部的光线动画 */
+@keyframes lightMoveReverse {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+/* 左侧光线动画 */
+@keyframes lightMoveLeft {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+/* 右侧光线动画 */
+@keyframes lightMoveRight {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
+/* 赛博朋克按钮样式 */
+.cyber-button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    margin: 0;  /* 移除外边距 */
+    border: 2px solid var(--neon-cyan);
+    background: transparent;
+    color: var(--neon-cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: absolute; /* 改为绝对定位 */
+    bottom: 1.5rem;    /* 距离底部距离 */
+    right: 2rem;       /* 距离右侧距离 */
+    overflow: hidden;
+    transition: all 0.3s;
+    z-index: 2;
+    cursor: pointer;
+    clip-path: polygon(
+        10% 0,
+        90% 0,
+        100% 30%,
+        100% 70%,
+        90% 100%,
+        10% 100%,
+        0 70%,
+        0 30%
+    );
+}
+
+.cyber-button:hover {
+    background: var(--neon-cyan);
+    color: var(--cyber-black);
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        inset 0 0 10px var(--hologram-blue);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.cyber-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cyber-button:hover::before {
+    left: 100%;
+}
