@@ -4,21 +4,32 @@
     --hologram-blue: #4facfe; 
     --cyber-black: #0a0a12;   
 }
-
+/* 修改 body 样式 */
 body {
-    background: var(--cyber-black);
-    background-image: url('background.webp');
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     font-family: 'Orbitron', sans-serif;
     color: var(--neon-cyan);
     line-height: 1.8;
     overflow-x: hidden;
-    font-size: 16px; 
+    font-size: 16px;
+    animation: backgroundFade 90s infinite; /* 动画时长调整为 90s，每张图片显示 10s */
 }
-
+/* 背景动画 */
+@keyframes backgroundFade {
+    0% { background-image: url('background1.png'); }
+    10% { background-image: url('background2.png'); }
+    20% { background-image: url('background3.png'); }
+    30% { background-image: url('background4.png'); }
+    40% { background-image: url('background5.png'); }
+    50% { background-image: url('background6.png'); }
+    60% { background-image: url('background7.png'); }
+    70% { background-image: url('background8.png'); }
+    80% { background-image: url('background9.png'); }
+    90% { background-image: url('background10.png'); }
+    100% { background-image: url('background1.png'); }
+}
 .header {
     text-align: center;
     padding: 1rem 0;
@@ -75,8 +86,8 @@ body {
 .project-card {
     background: rgba(10, 10, 18, 0.9); /* 背景透明度可调 */
     border: 2px solid var(--neon-cyan); /* 边框粗细可调 */
-    margin: 10rem;
-    padding: 2rem;
+    margin: 20rem;
+    padding: 4rem;
     position: relative;
     transition: all 0.3s; /* 过渡动画时长可调 */
     /* 修改为上下对称的切角形状 */
@@ -98,14 +109,17 @@ body {
 .project-card h3,
 .project-card pre {
     /* 修改左侧内边距 */
-    padding-left: 5rem; 
+    padding-left: -5rem; 
     /* 修改上内边距 */
     padding-top: -5rem; 
     /* 修改下内边距 */
-    padding-bottom: -5rem; 
+    padding-bottom: 0rem; 
     position: relative; /* 确保在数据流之上 */
     /* 修改：确保.project-card h3和pre元素在数据流之上 */
-    z-index: 2;     
+    z-index: 2;
+    /* 修改：添加外边距 */
+    margin-top: -1rem; /* 调整为合适的值 */
+    margin-left: 0rem; /* 调整为合适的值 */
 }
 /* 为代码块添加额外的左边距，使其与卡片内容对齐 */
 .project-card pre {
@@ -114,7 +128,7 @@ body {
     /* 修改代码块上外边距 */
     margin-top: -1rem; 
     /* 修改代码块下外边距 */
-    margin-bottom: -1rem; 
+    margin-bottom: 0rem; 
 }
 /* 添加文字发光效果 */
 .project-card h3 {
@@ -189,7 +203,7 @@ body {
         40deg,
         transparent,
         transparent 5px,
-        rgb(245, 8, 213) 5px,
+        rgb(252, 3, 210) 5px,
         rgba(245, 7, 193, 0.986) 10px
     );
     mask: linear-gradient(90deg, transparent 0%, white 50%, transparent 100%);
